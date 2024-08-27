@@ -2,10 +2,14 @@ function convertToSrt() {
     const text = document.getElementById('text-input').value;
     const srtContent = convertTextToSrt(text);
     
-    // Create a blob and a download link
-    const blob = new Blob([srtContent], { type: 'text/srt' });
+    // Convert the content to UTF-8 encoding explicitly
+    const encoder = new TextEncoder();
+    const utf8Content = encoder.encode(srtContent);
+
+    // Create a blob and a download link with the correct MIME type
+    const blob = new Blob([utf8Content], { type: 'text/srt;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    
+
     const downloadLink = document.getElementById('download-link');
     downloadLink.href = url;
     downloadLink.download = 'subtitles.srt';
@@ -27,5 +31,6 @@ function convertTextToSrt(text) {
         index++;
     }
 
-    return srtContent;
+    // Ensure consistent line breaks (Unix LF)
+    return srtContent.replace(/\r\n|\r/g, '\n');
 }
