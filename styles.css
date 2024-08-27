@@ -21,36 +21,29 @@ body {
     box-sizing: border-box;
 }
 
-.header {
+header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.github-star {
-    display: inline-block;
-    margin-top: 10px;
+header h1 {
     color: #333;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #337ab7;
     text-decoration: none;
-    font-size: 16px;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.github-star:hover {
-    background-color: #0366d6;
-    color: white;
-}
-
-.github-icon {
-    width: 20px;
-    margin-right: 8px;
-    vertical-align: text-bottom;
-}
-
-h1 {
-    color: #333;
+a:hover {
+    color: #23527c;
 }
 
 textarea {
@@ -98,8 +91,7 @@ button:hover {
     border: none;
 }
 
-footer {
-    text-align: center;
+.github-button {
     margin-top: 20px;
 }
 
@@ -116,6 +108,18 @@ footer {
     button {
         font-size: 16px;
     }
+}
 
-    .github-star {
-        font
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    textarea {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
