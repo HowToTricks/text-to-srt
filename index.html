@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text to SRT Converter</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Text to SRT Converter</h1>
-    <form id="converter-form">
-        <textarea id="text-input" rows="15" cols="70" placeholder="Enter your text with timestamps here..."></textarea><br>
-        <button type="button" onclick="convertToSrt()">Convert to SRT</button>
-    </form>
-    <a id="download-link" style="display: none;">Download SRT</a>
+    <div class="container">
+        <h1>Text to SRT Converter</h1>
+        <form id="converter-form">
+            <textarea id="text-input" rows="10" placeholder="Enter your text with timestamps here..."></textarea>
+            <button type="button" onclick="convertToSrt()">Convert to SRT</button>
+        </form>
+        <a id="download-link" class="hidden">Download SRT</a>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
