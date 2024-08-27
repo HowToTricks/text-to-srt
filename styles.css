@@ -2,7 +2,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f3f4f6;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,21 +17,40 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.github-star {
+    display: inline-block;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.github-star:hover {
+    background-color: #0366d6;
+    color: white;
+}
+
+.github-icon {
+    width: 20px;
+    margin-right: 8px;
+    vertical-align: text-bottom;
 }
 
 h1 {
     color: #333;
-    text-align: center;
-}
-
-h6 {
-    color: #333;
-    text-align: center;
-}
-
-a {
-    color: #333;
-    text-align: center;
 }
 
 textarea {
@@ -42,12 +61,13 @@ textarea {
     margin-top: 20px;
     font-size: 16px;
     resize: vertical;
+    height: 200px; /* Set a fixed height */
 }
 
 button {
     background-color: #0056b3;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -55,6 +75,7 @@ button {
     width: 100%;
     margin-top: 20px;
     font-size: 18px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -65,7 +86,7 @@ button:hover {
     position: relative;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .iframe-container iframe {
@@ -75,6 +96,11 @@ button:hover {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Media Queries for Responsive Design */
@@ -90,18 +116,6 @@ button:hover {
     button {
         font-size: 16px;
     }
-}
 
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    textarea {
-        font-size: 12px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-}
+    .github-star {
+        font
