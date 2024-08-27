@@ -1,36 +1,38 @@
-function convertToSrt() {
-    const text = document.getElementById('text-input').value;
-    const srtContent = convertTextToSrt(text);
-    
-    // Convert the content to UTF-8 encoding explicitly
-    const encoder = new TextEncoder();
-    const utf8Content = encoder.encode(srtContent);
+document.getElementById('convertBtn').addEventListener('click', function() {
+    const input = document.getElementById('inputText').value;
+    const srtContent = convertToSrt(input);
+    downloadSrtFile(srtContent);
+});
 
-    // Create a blob and a download link with the correct MIME type
-    const blob = new Blob([utf8Content], { type: 'text/srt;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
+function convertToSrt(inputText) {
+    const regex = /\[(\d{2}:\d{2}\.\d{3}) -> (\d{2}:\d{2}\.\d{3})\] (.*?)\s*(?=\[|$)/g;
+    let srtText = '';
+    let counter = 1;
 
-    const downloadLink = document.getElementById('download-link');
-    downloadLink.href = url;
-    downloadLink.download = 'subtitles.srt';
-    downloadLink.style.display = 'block';
-    downloadLink.textContent = 'Download SRT';
-}
-
-function convertTextToSrt(text) {
-    const regex = /\[(.*?)\] (.*)/g;
     let match;
-    let srtContent = '';
-    let index = 1;
+    while ((match = regex.exec(inputText)) !== null) {
+        const startTime = match[1].replace('.', ',');
+        const endTime = match[2].replace('.', ',');
+        const text = match[3];
 
-    while ((match = regex.exec(text)) !== null) {
-        const [ , times, subtitleText ] = match;
-        const [ startTime, endTime ] = times.split('->').map(t => t.trim().replace('.', ','));
-        
-        srtContent += `${index}\n${startTime} --> ${endTime}\n${subtitleText.trim()}\n\n`;
-        index++;
+        srtText += `${counter}\n`;
+        srtText += `00:${startTime} --> 00:${endTime}\n`;
+        srtText += `${text}\n\n`;
+
+        counter++;
     }
 
-    // Ensure consistent line breaks (Unix LF)
-    return srtContent.replace(/\r\n|\r/g, '\n');
+    return srtText;
+}
+
+function downloadSrtFile(srtContent) {
+    const blob = new Blob([srtContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'subtitles.srt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
