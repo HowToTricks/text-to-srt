@@ -26,13 +26,14 @@ function convertToSrt(inputText) {
 }
 
 function downloadSrtFile(srtContent) {
-    const blob = new Blob([srtContent], { type: 'text/plain' });
+    const blob = new Blob([srtContent], { type: 'application/x-subrip' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = 'subtitles.srt';
+    a.setAttribute('download', 'subtitles.srt'); // Explicitly defining the download attribute
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 100); // Cleanup the object URL after a brief delay
 }
